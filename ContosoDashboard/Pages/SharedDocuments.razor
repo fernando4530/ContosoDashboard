@@ -1,0 +1,9 @@
+@page "/documents/shared"
+@attribute [Authorize(Policy = "Employee")]
+@inject IDocumentService DocumentService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>Shared Documents - ContosoDashboard</PageTitle>
+<div class="container-fluid"><h1>Shared with me</h1><p class="text-muted">Documents shared directly with your account or department appear here.</p><div class="alert alert-light border">Sharing controls will be available when document sharing is enabled. Authorized retrieval uses the same document service and access rules.</div></div>
+
+@code { }

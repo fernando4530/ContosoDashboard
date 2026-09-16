@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ContosoDashboard.Data;
 using ContosoDashboard.Services;
+using ContosoDashboard.Endpoints;
+using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -43,6 +45,12 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.Configure<DocumentStorageOptions>(builder.Configuration.GetSection("DocumentStorage"));
+builder.Services.AddScoped<IFileStorageService, FileStorageService>();
+builder.Services.AddScoped<IMalwareScanner, MalwareScanner>();
+builder.Services.AddScoped<IDocumentValidationService, DocumentValidationService>();
+builder.Services.AddScoped<IDocumentAuthorizationService, DocumentAuthorizationService>();
+builder.Services.AddScoped<IDocumentService, DocumentService>();
 
 // Add HttpContextAccessor for accessing user claims
 builder.Services.AddHttpContextAccessor();
@@ -106,6 +114,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapBlazorHub();
+app.MapDocumentEndpoints();
 app.MapFallbackToPage("/_Host");
 
 app.Run();

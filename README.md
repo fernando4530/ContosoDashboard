@@ -135,6 +135,10 @@ public interface IFileStorageService
 
 ## Getting Started
 
+### Documentos
+
+El proyecto incluye un proyecto de pruebas separado. Ejecutá `dotnet test` desde la raíz para validar la funcionalidad documental. El almacenamiento local usa `AppData/uploads`, fuera de `wwwroot`; el escáner local se configura con `DocumentStorage:ScannerMode` (`Available`, `Rejected` o `Unavailable`). Esta implementación es local y de entrenamiento: una futura implementación cloud debe reemplazar `IFileStorageService` mediante DI.
+
 ### Prerequisites
 
 - .NET 8.0 SDK or later
